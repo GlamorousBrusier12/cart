@@ -18,17 +18,16 @@ class CartItem extends Component{
 			img:'',
 		}
 	}
-	 increaseQty(){
-		//  this.state = {
-		// 	 qty: this.state.qty+1,
-		//  }
-		console.log(this)
+	increaseQty(){
+		this.setState({
+			qty: this.state.qty+1,
+		});
 	}
 	decreaseQty = ()=>{
-		//  this.state = {
-			// 	//  qty: this.state.qty-1,
-			//  }
-		console.log(this)
+		let num = this.state.qty;
+		this.setState({
+			qty: (num>0?num-1:0),
+		});
 	 }
 	render(){
 		const {title, price, qty,} = this.state;
