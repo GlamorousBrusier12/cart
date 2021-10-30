@@ -11,6 +11,7 @@ const styles = {
 class CartItem extends Component{
 	constructor(){
 		super();
+		// intiliase the state attributes for the component
 		this.state = {
 			price: '12999',
 			title: 'iPhone 12 Pro',
@@ -19,9 +20,31 @@ class CartItem extends Component{
 		}
 	}
 	increaseQty(){
-		this.setState({
-			qty: this.state.qty+1,
+		// set state re renders the dom
+		// this.setState({
+		// 	qty: this.state.qty+1,
+		// });
+
+		// form-2 to call setstate()
+		this.setState((prevState)=>{
+			return {
+				qty:prevState.qty+1,
+			}
 		});
+
+		// const promise = new Promise((resolve, reject)=>{
+		// 	setTimeout(() => {
+		// 		resolve('done');
+		// 	}, 3000);
+		// })
+
+		// promise.then(()=>{
+		// 	// asynchronous call
+		// 	this.setState({
+		// 		qty:this.state.qty+1
+		// 	});
+		// 	console.log(this.state);
+		// })
 	}
 	decreaseQty = ()=>{
 		let num = this.state.qty;
