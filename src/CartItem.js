@@ -9,51 +9,8 @@ const styles = {
 }
 
 class CartItem extends Component{
-	constructor(){
-		super();
-		// intiliase the state attributes for the component
-		this.state = {
-			price: '12999',
-			title: 'iPhone 12 Pro',
-			qty: 1,
-			img:'',
-		}
-	}
-	increaseQty(){
-		// set state re renders the dom
-		// this.setState({
-		// 	qty: this.state.qty+1,
-		// });
-
-		// form-2 to call setstate()
-		this.setState((prevState)=>{
-			return {
-				qty:prevState.qty+1,
-			}
-		});
-
-		// const promise = new Promise((resolve, reject)=>{
-		// 	setTimeout(() => {
-		// 		resolve('done');
-		// 	}, 3000);
-		// })
-
-		// promise.then(()=>{
-		// 	// asynchronous call
-		// 	this.setState({
-		// 		qty:this.state.qty+1
-		// 	});
-		// 	console.log(this.state);
-		// })
-	}
-	decreaseQty = ()=>{
-		let num = this.state.qty;
-		this.setState({
-			qty: (num>0?num-1:0),
-		});
-	 }
 	render(){
-		const {title, price, qty,} = this.state;
+		const {title, price, qty,} = this.props.product;
 		return (
 			<div className="cart-item">
 				<div className='left-block'>
@@ -68,18 +25,19 @@ class CartItem extends Component{
 							alt="increase" 
 							className="action-icons" 
 							src="https://cdn-icons-png.flaticon.com/128/1828/1828925.png" 
-							onClick={this.increaseQty.bind(this)}
-						/>
+							onClick={()=>this.props.onIncrease(this.props.product)}
+              />
 						<img 
 							alt="decrease" 
 							className="action-icons" 
 							src="https://cdn-icons-png.flaticon.com/128/860/860821.png" 
-							onClick={this.decreaseQty}
+							onClick={()=>this.props.onDecrease(this.props.product)}
 						/>
 						<img 
 							alt="delete" 
 							className="action-icons" 
 							src="https://cdn-icons-png.flaticon.com/128/3096/3096673.png" 
+              onClick = {()=>this.props.onDelete(this.props.product)}
 						/>
 					</div>
 				</div>
