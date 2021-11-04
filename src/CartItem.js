@@ -8,12 +8,12 @@ const styles = {
 }
 
 const CartItem = (props)=>{
-	const {title, price, qty,} = props.product;
+	const {title, price, qty, img} = props.product;
 	return (
 		<div className="cart-item">
 			<div className='left-block'>
 				{// eslint-disable-next-line
-				<img style={styles.image} />
+				<img style={styles.image} src={img}/>
 				}
 			</div>
 			<div className='right-block'>

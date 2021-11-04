@@ -24,7 +24,10 @@ body {
   .action-icons:hover {
     cursor: pointer;
   }
-
+  .page-heading {
+    color: whitesmoke;
+    margin-left: 30px;
+  }
   .cart{
     display: flex;
     flex-direction: column;
