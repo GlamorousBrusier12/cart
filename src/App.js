@@ -1,37 +1,24 @@
 import { Component } from "react";
-import ReactDOM from 'react-dom';
 import Cart from './Cart';
 import './index.css';
-import Navbar from './Navbar';
-
+import Navbar from './Navbar'; 
+// import { firestore } from "./firebase";
+import firebase from './firebase';
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      products:[
-        {
-          price: 2499,
-          title: 'One Plus Smart band',
-          qty: 1,
-          img:'',
-          id:1,
-        },
-        {
-          price: 169999,
-          title: 'Macbook Pro 16 inch',
-          qty: 1,
-          img:'',
-          id:2,
-        },
-        {
-          price: 104999,
-          title: 'iPhone 12 Pro',
-          qty: 1,
-          img:'',
-          id:3,
-        },
-      ]
+      products:[      ]
     }
+  }
+  componentDidMount(){
+      firebase
+      .firestore()
+      .collection("products")
+      .get()
+      .then((snapshot)=>{
+      console.log(snapshot);
+    });
   }
   increaseQty = (product)=>{
     const {products} = this.state;
@@ -74,18 +61,19 @@ class App extends Component {
     return totalPrice;
   }
   render(props){
-      return (
+    return (
       <div className="App">
         <Navbar
           count = {this.getCartCount()}
-        />
+          />
         <Cart
           onIncrease = {this.increaseQty}
           onDecrease = {this.decreaseQty}
           onDelete = {this.deleteProduct}
           products = {this.state.products}
-        />
+          />
       <div>
+          
         TOTAL: {this.getTotalPrice()}
       </div>
 
